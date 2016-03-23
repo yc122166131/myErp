@@ -13,13 +13,13 @@ public class JdbcUtil {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/db_shiro";
+			String url = "jdbc:mysql://localhost:3306/dd";
 			String username = "root";
-			String password = "";
+			String password = "root";
 			
 				con = (Connection) DriverManager.getConnection(url, username,password);
 			} catch (Exception se) {
-				System.out.println("��ݿ�����ʧ�ܣ�");
+				System.out.println("666");
 				se.printStackTrace();
 			}
 		
