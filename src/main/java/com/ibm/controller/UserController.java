@@ -125,7 +125,7 @@ public class UserController {
 		
 		System.out.println(edit);
 		
-		return "Regis";
+		return "/emplist";
 	}
 	
 	

@@ -15,78 +15,87 @@
 <style type="text/css">
 .tbl {
 	width: 550px;
-	height: 350px;
+	height: 450px;
 	margin: 60px auto;
-	box-shadow:0 0 3em #111;
-	padding:30px;
-	border-radius:30px;
+	box-shadow: 0 0 3em #111;
+	padding: 30px;
+	border-radius: 30px;
 }
 
 .input {
 	width: 330px;
 	height: 30px;
-	
 }
 
-
-
-.contr{margin-bottom: 2px;}
+.contr {
+	margin-bottom: 2px;
+}
 </style>
 </head>
 <body>
 
 	<div class="tbl">
-		
-			<form:form action="${pageContext.request.contextPath }/user/aaa.do"
-				commandName="edit_user" method="post">
-				
-				<div class="form-group">
-					<div class="col-md-2">
-						<label for="inputEmail3" class="control-label">UserName</label>
-					</div>
-					<div class="col-md-10">
-						<form:input path="userdetail.user.userName" class="input input-group form-control contr " />
+
+		<form:form action="${pageContext.request.contextPath }/user/aaa.do"
+			commandName="edit_user" method="post">
+
+			<div class="form-group">
+				<div class="col-md-2">
+					<label for="inputEmail3" class="control-label">UserName</label>
+				</div>
+				<div class="col-md-10">
+					<form:input path="userdetail.user.userName"
+						class="input input-group form-control contr " />
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-md-2">
+					<label for="inputEmail3" class="control-label">Email</label>
+				</div>
+				<div class="col-md-10">
+					<form:input path="userdetail.user.email"
+						class="input input-group form-control contr" />
+				</div>
+			</div>
+			<br />
+
+			<div class="form-group">
+				<div class="col-md-2">
+					<form:radiobutton path="userdetail.sex" value="1" class="contr" />
+					男
+				</div>
+				<div class="col-md-2">
+					<form:radiobutton path="userdetail.sex" value="0" class="contr" />
+					女
+				</div>
+
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-md-12">
+					<form:checkboxes items="${favours }" path="favours"
+						delimiter="&nbsp;&nbsp;" class="contr" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-md-4">
+					<div class="dropdown">
+						<form:select path="userdetail.department.departmentName"
+							items="${departments }" class="btn dropdown-toggle"></form:select>
 					</div>
 				</div>
-				<br/>
-				<div class="form-group">
-					<div class="col-md-2">
-						<label for="inputEmail3" class="control-label">Email</label>
-					</div>
-					<div class="col-md-10">
-						<form:input path="userdetail.user.email" class="input input-group form-control contr" />
-					</div>
-				</div>		
-				  <br/>
-				
-				<div class="form-group">
-					<div class="col-md-2">
-						<form:radiobutton path="userdetail.sex" value="1"  class="contr" />男
-					</div>
-					<div class="col-md-2">
-						<form:radiobutton path="userdetail.sex" value="0"  class="contr" />女 
-					</div>
+				<div class="col-md-8">
+					<input class="btn btn-primary" type="submit" value="提交" />
 				</div>
-				<br/>
-				<div class="form-group">
-					<form:checkboxes items="${favours }" path="favours" delimiter="&nbsp;&nbsp;"  class="contr"/>
-				</div>
-				<br/>
-				<div class="dropdown">
-					<form:select path="userdetail.department.departmentName"
-						items="${departments }" class="btn dropdown-toggle"></form:select>
-				</div>
-				<br />
-				
-					
-				<div class="form-group">
-					<div class="col-md-2">		
-						<input class="btn btn-primary" type="submit" value="提交" />
-					</div>
-				</div>
-				
-			</form:form>
-		
+			</div>
+
+
+
+
+		</form:form>
+
 	</div>
 
 
