@@ -1,0 +1,28 @@
+	*{padding: 0;margin: 0;}
+			body{font-family: "微软雅黑";font-size: 14px;}
+			a{text-decoration: none;color: #333;}
+			/*垂直居中*/
+			.box{
+				width: 380px;
+				background: linear-gradient(#111,#777);
+				height: 420px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -230px;
+				margin-left: -190px;
+				overflow: hidden;
+				color: #fff;
+				box-shadow: 0 0 1em #111;
+				border-radius: 20px;
+			}
+			
+			.cnt{width:320px;height: 400px;margin: 30px auto 30px;}
+			.cnt label{margin-right: 1px;display: inline-block;}
+			.logo{background: #111;line-height: 66px;height: 106px;}
+			.cnt input{width: 276px;border:none;height: 32px;border-radius: 5px;text-indent:0.5em ;color: #999;}
+			.cnt p{margin-top: 26px;text-align: center;width: 310px;}
+			.cnt .btnbox{margin-top: 30px;}
+			.btnbox input{background: #333;color: #fff;}
+				.btnbox:hover input{background: #888;}
+			.errorTip{width: 200px;height: 20px; background: #666;margin: 45px auto;text-align: center;line-height: 20px;border-radius: 6px;}

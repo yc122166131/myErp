@@ -117,7 +117,7 @@ public class UserController {
 			favours.put(""+_index, favourateEnum.fav.get(_index));
 		}
 		
-		//获取所有部门名字
+		//获取所有部门名字和对应id
 		List<Department> depts = userservice.getAllDepts();
 		Map<Integer , String> defaultDepts  = new HashMap<Integer, String>();
 		for(Department d : depts){
