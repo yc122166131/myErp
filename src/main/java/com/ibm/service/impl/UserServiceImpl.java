@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ibm.dao.UserDao;
+import com.ibm.entity.Department;
 import com.ibm.entity.User;
 import com.ibm.entity.UserDetail;
 import com.ibm.service.UserService;
@@ -38,8 +39,12 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUserByUserId(id);
 	}
 
-	public List<String> getAllDepts() {
+	public List<Department> getAllDepts() {
 		return userDao.getDepts();
+	}
+
+	public void updateEmp(UserDetail userDetail) {
+		userDao.updateEmp(userDetail);
 	}
 
 }

@@ -101,7 +101,7 @@
 			<div class="form-group">
 				<div class="col-md-4">
 					<div class="dropdown">
-						<form:select path="userdetail.department.departmentName"
+						<form:select path="userdetail.departmentId"
 							items="${departments }" class="btn dropdown-toggle"></form:select>
 					</div>
 				</div>

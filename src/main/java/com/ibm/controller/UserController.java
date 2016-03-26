@@ -118,15 +118,18 @@ public class UserController {
 		}
 		
 		//获取所有部门名字
-		List<String> depts = userservice.getAllDepts();
-		
+		List<Department> depts = userservice.getAllDepts();
+		Map<Integer , String> defaultDepts  = new HashMap<Integer, String>();
+		for(Department d : depts){
+			defaultDepts.put(d.getId(), d.getDepartmentName());
+		}
 		EmpEdit u_edit = new EmpEdit();
 		u_edit.setUserdetail(Edit_user);
 		u_edit.setFavours(myfavours);
 		
 		map.put("edit_user", u_edit);
 		map.put("favours", favours);   //用于作为 form:checkboxs 的所有默认数据
-		map.put("departments", depts); //用于作为 form:select 的所有默认数据
+		map.put("departments", defaultDepts); //用于作为 form:select 的所有默认数据
 		
 		return "empedit";
 		

@@ -1,9 +1,10 @@
 package com.ibm.controller;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,8 +40,6 @@ public class EmpEditController {
 	}
 	
 	
-	
-	
 	/**
 	 * put请求 
 	 * @param EmpEdit edit
@@ -49,11 +48,23 @@ public class EmpEditController {
 	@RequestMapping(value="/aaa",method=RequestMethod.PUT)
 	public String Regis(@ModelAttribute("abc") EmpEdit edit){
 		
-		System.out.println(edit);
+		String favourite = "";
+		List<String> favs = edit.getFavours();
+		for(int i = 0 ; i < favs.size();i++){
+			if(i < favs.size()-1){
+				favourite += favs.get(i)+",";
+			}else{
+				favourite += favs.get(i);
+			}
+		}
+			
+		edit.getUserdetail().setFavourate(favourite);
+		UserDetail userDetail = edit.getUserdetail();
+		userservice.updateEmp(userDetail);
 		
 		// return "/user/emplist";       HTTP Status 404 - /myErp/user/emplist.jsp
-		//return "redirect:/user/emplist"; 
-	    return "/emplist"; 
+		return "redirect:/user/emplist"; 
+	   
 	}
 	
 }

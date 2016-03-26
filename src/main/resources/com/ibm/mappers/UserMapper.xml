@@ -5,49 +5,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ibm.dao.UserDao">
 
 	<resultMap type="User" id="UserResult">
-		<result property="id" column="id"/>
-		<result property="userName" column="userName"/>
-		<result property="password" column="password"/>
+		<result property="id" column="id" />
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
 	</resultMap>
-	
-	<!-- 这里返回值不管是单个或者是list type是泛型里的：比方说这里的type=UserDetail 可以是 UserDetail 或者 List<UserDetail> -->
+
+	<!-- 这里返回值不管是单个或者是list type是泛型里的：比方说这里的type=UserDetail 可以是 UserDetail 或者 
+		List<UserDetail> -->
 	<resultMap type="UserDetail" id="UserDetailResultMap">
-         <result property="sex" column="sex"/>
-         <result property="favourate" column="favourate"/>
-         <association property="user" javaType="com.ibm.entity.User">
-             <id property="id" column="id"/>
-             <result property="userName" column="userName"/>
-             <result property="password" column="password"/>
-             <result property="email" column="email"/>
-         </association>
-         <association property="department" javaType="com.ibm.entity.Department">
-             <id property="id" column="id"/>
-             <result property="departmentName" column="departmentName"/>
-         </association>
-     </resultMap>
-	
+		<result property="sex" column="sex" />
+		<result property="favourate" column="favourate" />
+		<result property="departmentId" column="departmentId" />
+		<association property="user" javaType="com.ibm.entity.User">
+			<id property="id" column="id" />
+			<result property="userName" column="userName" />
+			<result property="password" column="password" />
+			<result property="email" column="email" />
+		</association>
+		<association property="department" javaType="com.ibm.entity.Department">
+			<id property="id" column="id" />
+			<result property="departmentName" column="departmentName" />
+		</association>
+	</resultMap>
+
+	<resultMap type="Department" id="DepartmentResultMap">
+		<result property="id" column="id" />
+		<result property="departmentName" column="departmentName" />
+	</resultMap>
+
 	<select id="getByUserName" parameterType="String" resultMap="UserResult">
 		select * from t_user where userName=#{userName}
 	</select>
-	
+
 	<select id="getRoles" parameterType="String" resultType="String">
-		select r.roleName from t_user u,t_role r where u.roleId=r.id and u.userName=#{userName}
+		select
+		r.roleName from t_user u,t_role r where u.roleId=r.id and
+		u.userName=#{userName}
 	</select>
-	
+
 	<select id="getPermissions" parameterType="String" resultType="String">
-		select p.permissionName from t_user u,t_role r,t_permission p where u.roleId=r.id and p.roleId=r.id and u.userName=#{userName}
+		select p.permissionName from t_user u,t_role r,t_permission p where
+		u.roleId=r.id and p.roleId=r.id and u.userName=#{userName}
 	</select>
-	
+
 	<select id="getEmpInfo" resultMap="UserDetailResultMap">
-		select u.id,u.userName , u.email , detail.sex , detail.favourate , dept.id,dept.departmentName FROM t_user u,t_user_detail detail , t_department dept WHERE u.id = detail.userid AND dept.id = detail.departmentId order by u.id asc
+		SELECT u.id,u.userName ,
+		u.email , detail.sex , detail.favourate ,
+		detail.departmentId,dept.departmentName FROM t_user u,t_user_detail
+		detail , t_department dept
+		WHERE u.id = detail.userid AND dept.id = detail.departmentId ORDER BY u.id
+		ASC
 	</select>
-	
+
 	<select id="getUserByUserId" parameterType="int" resultMap="UserDetailResultMap">
-		select u.id,u.userName ,u.password, u.email , detail.sex , detail.favourate ,dept.id, dept.departmentName FROM t_user u,t_user_detail detail , t_department dept WHERE u.id = detail.userid AND dept.id = detail.departmentId AND u.id = #{id}
+		select u.id,u.userName ,u.password, u.email , detail.sex ,
+		detail.favourate ,detail.departmentId, dept.departmentName FROM t_user
+		u,t_user_detail detail , t_department dept WHERE u.id = detail.userid
+		AND dept.id = detail.departmentId AND u.id = #{id}
 	</select>
-	
-	<select id="getDepts" resultType="String">
-		select t.departmentName FROM t_department t
+
+	<select id="getDepts" resultMap="DepartmentResultMap">
+		SELECT t.id,t.departmentName FROM t_department t
 	</select>
-	
+
+	<update id="updateEmp" parameterType="UserDetail">
+		UPDATE t_department d INNER JOIN t_user_detail tud ON tud.departmentId =
+		d.id INNER JOIN t_user u ON u.id = tud.userid SET tud.sex=#{sex} ,
+		tud.favourate = #{favourate} , u.email=#{user.email} ,
+		u.userName=#{user.userName}, tud.departmentId=#{departmentId} WHERE
+		u.id = #{user.id}
+	</update>
+
 </mapper> 

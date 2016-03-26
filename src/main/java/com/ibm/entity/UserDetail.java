@@ -7,8 +7,14 @@ public class UserDetail {
 	private Integer sex;
 	private String favourate;
 	private Department department;
+	private String departmentId;
 	
-	
+	public String getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -37,8 +43,10 @@ public class UserDetail {
 	@Override
 	public String toString() {
 		return "UserDetail [user=" + user + ", sex=" + sex + ", favourate="
-				+ favourate + ", department=" + department + "]";
+				+ favourate + ", department=" + department + ", departmentId="
+				+ departmentId + "]";
 	}
+	
 	
 	
 	

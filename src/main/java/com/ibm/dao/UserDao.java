@@ -3,6 +3,7 @@ package com.ibm.dao;
 import java.util.List;
 import java.util.Set;
 
+import com.ibm.entity.Department;
 import com.ibm.entity.User;
 import com.ibm.entity.UserDetail;
 
@@ -45,5 +46,11 @@ public interface UserDao {
 	 * ͨ获取全部部门名
 	 * @return User
 	 */
-	public List<String> getDepts();
+	public List<Department> getDepts();
+	
+	/**
+	 * ͨ更新员工信息
+	 * @return User
+	 */
+	public void updateEmp(UserDetail userDetail);
 }

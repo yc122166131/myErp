@@ -3,6 +3,7 @@ package com.ibm.service;
 import java.util.List;
 import java.util.Set;
 
+import com.ibm.entity.Department;
 import com.ibm.entity.User;
 import com.ibm.entity.UserDetail;
 
@@ -45,5 +46,11 @@ public interface UserService {
 	 * ͨ获取全部部门名
 	 * @return User
 	 */
-	public List<String> getAllDepts();
+	public List<Department> getAllDepts();
+
+	/**
+	 * ͨ更新员工信息
+	 * @return User
+	 */
+	public void updateEmp(UserDetail userDetail);
 }
