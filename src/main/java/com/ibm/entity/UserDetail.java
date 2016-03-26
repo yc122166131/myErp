@@ -1,7 +1,5 @@
 package com.ibm.entity;
 
-import java.util.List;
-
 public class UserDetail {
 	
 	

@@ -42,7 +42,7 @@
 						<td>${yc:CovertFormat(userInfo.favourate)}</td>  
 						<td>${userInfo.department.departmentName}</td>
 						<shiro:hasRole name="admin">
-							<td ><a href="${pageContext.request.contextPath }/user/empEdit.do?id=${userInfo.user.id }">Edit</a></td>
+							<td ><a href="${pageContext.request.contextPath }/user/empEdit?id=${userInfo.user.id }">Edit</a></td>
 							<td ><a href="#">Delete</a></td>
 						</shiro:hasRole>
 					</tr>

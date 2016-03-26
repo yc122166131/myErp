@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <style type="text/css">
 .tbl {
 	width: 550px;
@@ -36,9 +36,10 @@
 
 	<div class="tbl">
 
-		<form:form action="${pageContext.request.contextPath }/user/aaa.do"
-			commandName="edit_user" method="post">
-
+		<form:form action="${pageContext.request.contextPath }/edit/aaa"  method="post" 
+		modelAttribute="edit_user">
+			
+			
 			<div class="form-group">
 				<div class="col-md-2">
 					<label for="inputEmail3" class="control-label">UserName</label>
@@ -49,6 +50,24 @@
 				</div>
 			</div>
 			<br />
+			
+			<c:if test="${edit_user.userdetail.user.id == null }">
+				<div class="form-group">
+					<div class="col-md-2">
+						<label for="inputEmail3" class="control-label">Password</label>
+					</div>
+					<div class="col-md-10">
+						<form:input path="userdetail.user.password"
+							class="input input-group form-control contr " />
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${edit_user.userdetail.user.id != null }">
+				<input type="hidden" name="id" value="${edit_user.userdetail.user.id}"/>
+				<input type="hidden" name="_method" value="PUT"/>
+			</c:if>
+			<br />
+			
 			<div class="form-group">
 				<div class="col-md-2">
 					<label for="inputEmail3" class="control-label">Email</label>

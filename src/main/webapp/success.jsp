@@ -16,7 +16,7 @@
 		<div class="user">
 			<h3>お帰りなさい: &nbsp;&nbsp;&nbsp; <shiro:principal/> </h3> 
 		</div>
-			<a href="${pageContext.request.contextPath }/user/emplist.do">点击查看员工信息</a>
+			<a href="${pageContext.request.contextPath }/user/emplist">点击查看员工信息</a>
 	</shiro:hasRole>
 
 
@@ -26,7 +26,7 @@
 		<h3>welcome back :  &nbsp;&nbsp;&nbsp;<shiro:principal/> </h3>
 	</div>
 
-	<a href="${pageContext.request.contextPath }/user/emplist.do">点击查看员工信息</a>
+	<a href="${pageContext.request.contextPath }/user/emplist">点击查看员工信息</a>
 </shiro:hasRole>
 
 <shiro:hasPermission name="student:create">

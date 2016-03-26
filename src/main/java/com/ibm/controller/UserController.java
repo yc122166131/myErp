@@ -9,6 +9,9 @@ import java.util.Map;
 
 
 
+
+
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +20,10 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibm.dto.EmpEdit;
@@ -70,18 +76,27 @@ public class UserController {
 	
 	
 	/**
-	 * 查询所有员工信息
+	 * 查询所有员工信息(get)
+	 * @param 
 	 * @return
 	 */
-	@RequestMapping(value="/emplist")
+	@RequestMapping(value="/emplist",method=RequestMethod.GET)
 	public String empList(Map<String,Object> map){
 		
 		List<UserDetail> emps = userservice.getEmpInfo();
 		map.put("userInfo", emps);
+		System.out.println(emps);
 		return "emplist";
 	}
 	
-	@RequestMapping(value="/empEdit")
+	
+	
+	
+	/**
+	 * 根据员工号获取该员工的信息并回显到empedit.jsp页面
+	 * @return
+	 */
+	@RequestMapping(value="/empEdit",method=RequestMethod.GET)
 	public String empEdit(@RequestParam("id") Integer id,Map<String,Object> map){
 		
 		//根据员工号获取该员工的所有信息
@@ -110,23 +125,13 @@ public class UserController {
 		u_edit.setFavours(myfavours);
 		
 		map.put("edit_user", u_edit);
-		map.put("favours", favours);
-		map.put("departments", depts);
+		map.put("favours", favours);   //用于作为 form:checkboxs 的所有默认数据
+		map.put("departments", depts); //用于作为 form:select 的所有默认数据
 		
 		return "empedit";
 		
 	}
 	
-	
-	
-	
-	@RequestMapping(value="/aaa")
-	public String Regis(EmpEdit edit){
-		
-		System.out.println(edit);
-		
-		return "/emplist";
-	}
 	
 	
 
