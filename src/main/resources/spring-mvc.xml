@@ -16,7 +16,7 @@
 
 	<!-- 使用注解的包，包括子集 -->
 	<context:component-scan base-package="com.ibm.controller" />
-	
+	<mvc:default-servlet-handler/>
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
 	<!-- 视图解析器 -->

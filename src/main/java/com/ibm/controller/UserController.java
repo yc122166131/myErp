@@ -70,7 +70,7 @@ public class UserController {
 			e.printStackTrace();
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "账号或者密码错误");
-			return "index";
+			return "redirect:/index.jsp";
 		}
 	}
 	
