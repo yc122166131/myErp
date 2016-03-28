@@ -13,7 +13,7 @@ public class JdbcUtil {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/dd";
+			String url = "jdbc:mysql://localhost:3306/db_shiro";
 			String username = "root";
 			String password = "root";
 			

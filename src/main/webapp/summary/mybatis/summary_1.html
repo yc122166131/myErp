@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body{background:linear-gradient(#ccc,#fff);}
+.main{margin:10px auto; width:1200px;}
+.answer{width:1000px;height:90px;padding:10px;box-shadow:0 0 2em #111;}
+.content {
+	margin-top:10px;
+	background: #333;
+	color: #fff;
+	text-decoration: none;
+	font-size: 18px;
+	border-radius:50px;
+	display:block;
+	text-align:left;
+	box-shadow:0 0 1em #111;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="main">
+		<h2 style="color:blue;text-shadow:0 0 1em red;">当在一次查询中查询出的字段有两个重名的情况下，系统默认只会取出第一个列id做映射！</h2>
+		<h4>(注意下面的映射的 User 中 column为id 和 Department 中 column为id )</h4>
+		<textarea rows=20 cols=100 id="content" class="content"
+			disabled="disabled" >
+			
+	<resultMap type="UserDetail" id="UserDetailResultMap">
+	         <result property="sex" column="sex" />
+	         <result property="favourate" column="favourate" />
+	         <association property="user" javaType="com.ibm.entity.User">
+	             <id property="id" column="id" />
+	             <result property="userName" column="userName" />
+	             <result property="email" column="email" />
+	         </association>
+	          <association property="department"
+			javaType="com.ibm.entity.Department">
+			
+	             <id property="id" column="id" />      这里出了问题 (因为他和上面的user 里的id冲突了)
+	             
+	             <result property="departmentName" column="departmentName" />
+	         </association>
+     </resultMap></textarea>
+     
+     <textarea rows=11 cols=100 id="content" class="content"
+			disabled="disabled" >
+      这是查询语句
+	 <select id="getEmpInfo" resultMap="UserDetailResultMap">
+		select u.id ,  u.userName , detail.favourate , dept.id , dept.departmentName FROM t_user u,t_user_detail detail , t_department dept WHERE u.id = detail.userid AND dept.id = detail.departmentId order by u.id asc
+	</select>
+	
+	上面 语句中 u.id 和 dept.id 因为返回的column名都是id的所以会出现 后面的dept.id会被第一个user.id给覆盖掉的情况！	
+	</textarea>
+     <br>
+		<div class="answer">问题的根源是你的select语句返回了两个同名列：id，然后你映射id的时候，
+			mybatis发现有两个同名id列,默认就用第一个列的id值做映射，
+			也就是你的department的id值做映射。所以，在department表中找到的记录是这样的：</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			在department表中，外层UserDetail的id等于department的id的那条记录。查询出来的记录根本没有意义。能查询出来完全是巧合。
+			解决方法很简单，select的时候给两个表的id取别名，然后用这两上别名做映射。
+		</div>
+		
+	<textarea rows=10 cols=100 id="content" class="content"
+			disabled="disabled" >
+       这是修改后的查询语句
+	 <select id="getEmpInfo" resultMap="UserDetailResultMap">
+		select u.id ,  u.userName , detail.favourate , dept.id as dp_id , dept.departmentName FROM t_user u,t_user_detail detail , t_department dept WHERE u.id = detail.userid AND dept.id = detail.departmentId order by u.id asc
+	</select>
+	
+	上面 语句中dept.id (这里我起了个别名 dp_id 那么返回出来的column列名就和之前的user.id返回的id列名字不一样了)！
+	</textarea>
+	
+		<textarea rows=20 cols=100 id="content" class="content"
+			disabled="disabled" >
+			
+	<resultMap type="UserDetail" id="UserDetailResultMap">
+	         <result property="sex" column="sex" />
+	         <result property="favourate" column="favourate" />
+	         <association property="user" javaType="com.ibm.entity.User">
+	             <id property="id" column="id" />
+	             <result property="userName" column="userName" />
+	             <result property="email" column="email" />
+	         </association>
+	          <association property="department"
+			javaType="com.ibm.entity.Department">
+	             <id property="id" column="dp_id" />
+	             <result property="departmentName" column="departmentName" />
+	         </association>
+     </resultMap>
+     
+     Mybatis 映射的 column 是查询出来的列名 (所以可以是 自定义的名字) property就是实体的名字;
+     所以记住：只要在一个resultMap 中的映射的字段 他们的column是 必须不一样的！！！</textarea>
+</div>
+	<script type="text/javascript" src="../../js/jquery-1.8.2.min.js"></script>
+	<script>
+		$(function() {
+
+		});
+	</script>
+</body>
+</html>
