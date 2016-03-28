@@ -66,8 +66,7 @@ a {
 
 .cnt p {
 	margin-top: 26px;
-	text-align: center;
-	width: 310px;
+	width: 340px;
 }
 
 .cnt .btnbox {
@@ -97,7 +96,7 @@ a {
 /*垂直居中*/
 .box1 {
 	width: 380px;
-	background: linear-gradient(#111, #777);
+	background: linear-gradient(#000, #aaa,#111);
 	height: 420px;
 	position: fixed;
 	top: 50%;
@@ -110,6 +109,8 @@ a {
 	border-radius: 20px;
 	display: none;
 }
+
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="css/animate.min.css" />
@@ -126,28 +127,29 @@ a {
 			</p>
 			<p>
 			<label for="userName">帐号:<input name="r_userName"
-				type="password" autocomplete="off" autofocus="autofocus"
+				type="text" autocomplete="off" autofocus="autofocus"
 				placeholder="请输入帐号...." maxlength="60" type="text" id="userName1"
-				value="" class="animated swing" /></label>
+				value="" class="animated swing" style="width:251px;" /><span style="color:red;">账号重复</span></label>
 			</p>
 			<p>
 			<label for="password">密码:<input name="r_password"
 				type="password" autocomplete="off" autofocus="autofocus"
 				placeholder="请输入密码...." maxlength="16" type="text" id="password1"
-				value="" class="animated swing" /></label>
+				value="" class="animated swing" style="width:251px;"/><span style="color:blue;">&nbsp;&nbsp;强</span ></label>
 			</p>
 			<p>
 			<label for="email">邮箱:<input name="r_email"
-				type="password" autocomplete="off" autofocus="autofocus"
+				type="text" autocomplete="off" autofocus="autofocus"
 				placeholder="请输入邮箱...." maxlength="50" type="text" id="email1"
-				value="" class="animated swing" /></label>
+				value="" class="animated swing" style="width:251px;"/><span style="color:green;font-weight:bold;">邮箱可用</span></label>
 			</p>
 			<p>
 			<label for="emailConfirm">邮箱确认码:<input name="r_emailConfirm"
 				type="text" autocomplete="off" autofocus="autofocus"
 				placeholder="请输入邮箱确认码...." maxlength="6"  id="emailConfirm1" value="" 
-				class="animated swing" style="width: 113px;" /></label>
-				 <input type="submit" value="注册" id="r_submit" style="width:88px;" />
+				class="animated swing" style="width: 93px;" /></label>
+				 <span style="red;">300s</span>
+				 <input type="submit" value="注册" id="r_submit" style="width:78px;" />
 			</p>
 			<p>
 				<a href="#" style="color: #ddd; margin-top: 4px;" id='logFrame'>返回登录界面</a>
@@ -169,7 +171,7 @@ a {
 					<img src="imgs/logo.png" width="300px" height="100px" />
 				</h1>
 				<p>
-					<label for="userName">帐号:<input name="userName"
+					<label for="userName">帐号:<input name="userName" type="text"
 						autocomplete="off" autofocus="autofocus" placeholder="请输入帐号...."
 						maxlength="60" id="userName" value="" class="animated swing" /></label>
 				</p>
@@ -183,7 +185,7 @@ a {
 					<a href="#" style="color: #ddd;" id="reg">注册</a> <a href="#"
 						style="color: #ddd; margin-left: 185px;"">忘记密码</a>
 				</p>
-				<p class="btnbox" style="width: 340px;">
+				<p class="btnbox" style="width: 390px;margin-left:28px;">
 					<input type="submit" value="登录" id="submit" />
 				</p>
 				<div class="errorTip" id="errorTip"></div>
