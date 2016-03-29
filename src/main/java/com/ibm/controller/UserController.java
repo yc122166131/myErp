@@ -74,6 +74,13 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping("/logout")
+	public String logOut() {
+		Subject subject=SecurityUtils.getSubject();
+		subject.logout();
+		return "redirect:/success.jsp";
+	}
+	
 	
 	/**
 	 * 查询所有员工信息(get)
