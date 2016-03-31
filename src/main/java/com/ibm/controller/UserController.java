@@ -12,6 +12,7 @@ import java.util.Map;
 
 
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -64,7 +65,7 @@ public class UserController {
 			System.out.println("sessionId:"+session.getId());
 			System.out.println("sessionHost:"+session.getHost());
 			System.out.println("sessionTimeout:"+session.getTimeout());
-			//session.setAttribute("info", "session的值");
+			session.setAttribute("user1", user);
 			return "redirect:/success.jsp";
 		}catch(Exception e){
 			e.printStackTrace();
@@ -77,7 +78,7 @@ public class UserController {
 	@RequestMapping("/logout")
 	public String logOut() {
 		Subject subject=SecurityUtils.getSubject();
-		subject.logout();
+		subject.logout(); //此时无需调用 subject.getSession().removeAttribute("user1");即会自动清除Session
 		return "redirect:/success.jsp";
 	}
 	
@@ -143,6 +144,10 @@ public class UserController {
 	}
 	
 	
-	
+	@RequestMapping(value="/ajaxlogIn",method=RequestMethod.POST)
+	public String ajaxlogIn(){
+		System.out.print("ajaxlogIn");
+		return "ajaxLogin";
+	}
 
 }
