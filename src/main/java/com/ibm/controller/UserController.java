@@ -79,7 +79,7 @@ public class UserController {
 	public String logOut() {
 		Subject subject=SecurityUtils.getSubject();
 		subject.logout(); //此时无需调用 subject.getSession().removeAttribute("user1");即会自动清除Session
-		return "redirect:/success.jsp";
+		return "redirect:/index.jsp";
 	}
 	
 	
