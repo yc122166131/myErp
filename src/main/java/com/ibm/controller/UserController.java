@@ -71,15 +71,21 @@ public class UserController {
 			e.printStackTrace();
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "账号或者密码错误");
-			return "redirect:/index.jsp";
+			return "redirect:/adminlogin.jsp";
 		}
 	}
 	
+	
+	
+	/**
+	 * 登出
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public String logOut() {
 		Subject subject=SecurityUtils.getSubject();
 		subject.logout(); //此时无需调用 subject.getSession().removeAttribute("user1");即会自动清除Session
-		return "redirect:/index.jsp";
+		return "redirect:/adminlogin.jsp";
 	}
 	
 	
@@ -143,11 +149,4 @@ public class UserController {
 		
 	}
 	
-	
-	@RequestMapping(value="/ajaxlogIn",method=RequestMethod.POST)
-	public String ajaxlogIn(){
-		System.out.print("ajaxlogIn");
-		return "ajaxLogin";
-	}
-
 }
