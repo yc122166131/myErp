@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 	
-	<a href="guest/loginAndRegis/login.jsp">用户首页</a>
+	<a href="guest/login/login.jsp">用户首页</a>
 	<br/>
 	
 	<a href="main.jsp">后台首页</a>
