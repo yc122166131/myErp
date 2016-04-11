@@ -11,5 +11,6 @@
 	<br/>
 	
 	<a href="main.jsp">后台首页</a>
+	<a href="music/music.jsp">music</a>
 </body>
 </html>
